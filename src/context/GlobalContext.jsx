@@ -15,7 +15,6 @@ export const GlobalContextProvider = ({ children }) => {
     return storedTasks || initialTasks;
   };
   
-
   const [tasksState, setTasks] = useState(() => initializeTasks());
 
   useEffect(() => {
