@@ -10,16 +10,15 @@ export const useGlobalContext = () => {
 
 export const GlobalContextProvider = ({ children }) => {
 
- const initializeTasks = () =>
-{
-  const storedTasks = JSON.parse(localStorage.getItem("tasks")) || initialTasks;
-  return storedTasks;
-};
+  const initializeTasks = () => {
+    const storedTasks = JSON.parse(localStorage.getItem("tasks"));
+    return storedTasks || initialTasks;
+  };
+  
 
   const [tasksState, setTasks] = useState(() => initializeTasks());
 
   useEffect(() => {
-    // Actualizar localStorage cada vez que cambie el estado de tasks
     localStorage.setItem("tasks", JSON.stringify(tasksState));
   }, [tasksState]);
 
