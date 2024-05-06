@@ -10,10 +10,11 @@ export const useGlobalContext = () => {
 
 export const GlobalContextProvider = ({ children }) => {
 
-  const initializeTasks = () => {
-    const storedTasks = JSON.parse(localStorage.getItem("tasks"));
-    return storedTasks || initialTasks;
-  };
+  const initializeTasks = () =>
+    {
+      const storedTasks = JSON.parse(localStorage.getItem("tasks")) || initialTasks ;
+      return storedTasks;
+    };
   
   const [tasksState, setTasks] = useState(() => initializeTasks());
 
