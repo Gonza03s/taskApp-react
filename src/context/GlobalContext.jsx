@@ -1,26 +1,27 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { initialTasks } from "../data/taskData";
 
-const Context = createContext();
+ const context = createContext();
 
 export const useGlobalContext = () => {
-  const context = useContext(Context);
-  return context;
+  const contexto = useContext(context);
+  return contexto;
 };
 
 export const GlobalContextProvider = ({ children }) => {
-  //inicializar el estado basado en localStorage
-  const initializeTasks = () => {
-    const storedTasks = JSON.parse(localStorage.getItem("tasks")) || initialTasks;
-    return storedTasks;
-  };
 
-  const [tasks, setTasks] = useState(() => initializeTasks());
+ const initializeTasks = () =>
+{
+  const storedTasks = JSON.parse(localStorage.getItem("tasks")) || initialTasks;
+  return storedTasks;
+};
+
+  const [tasksState, setTasks] = useState(() => initializeTasks());
 
   useEffect(() => {
     // Actualizar localStorage cada vez que cambie el estado de tasks
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
+    localStorage.setItem("tasks", JSON.stringify(tasksState));
+  }, [tasksState]);
 
   const createTask = (title, description) => {
     const newTask = {
@@ -52,11 +53,9 @@ export const GlobalContextProvider = ({ children }) => {
     );
   };
 
-
-
   return (
-    <Context.Provider value={{ tasks, createTask, deleteTask, updateDescription, updateTitle }}>
+    <context.Provider value={{ tasksState, createTask, deleteTask, updateDescription, updateTitle }}>
       {children}
-    </Context.Provider>
+    </context.Provider>
   );
 };

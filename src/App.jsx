@@ -10,11 +10,11 @@ export const App = () => {
 
       <GlobalContextProvider>
         <div className="container mx-auto p-10">
-        <TaskForm></TaskForm>
-        <TaskList></TaskList>
-
+          <TaskForm></TaskForm>
+          <TaskList></TaskList>
         </div>
       </GlobalContextProvider>
+      
     </main>
   );
 };
